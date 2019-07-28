@@ -1,0 +1,5 @@
+mongodb:
+  sapi:
+    host: localhost
+    port: "8091"
+    base: /mongodb/sapi

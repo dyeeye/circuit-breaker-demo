@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:circuit-breaker="http://www.mulesoft.org/schema/mule/circuit-breaker"
+	xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd 
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/circuit-breaker http://www.mulesoft.org/schema/mule/circuit-breaker/current/mule-circuit-breaker.xsd">
+	<http:listener-config name="consent-process-api-httpListenerConfig">
+        <http:listener-connection host="0.0.0.0" port="8081" />
+    </http:listener-config>
+    <apikit:config name="consent-process-api-config" api="resource::36ede5bb-2ab0-4768-b1bb-790ae2f56042:consent-process-api:1.0.0:raml:zip:consent-process-api.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
+	<configuration-properties doc:name="Configuration properties" doc:id="f5ac9c29-c063-4678-a1d1-90bb67d315d4" file="consent-papi.yaml" />
+	<http:request-config name="MongoDB_SAPI_HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="1c9d7e45-cfa5-4abf-b976-50049ea49e89" basePath="${mongodb.sapi.base}" >
+		<http:request-connection host="${mongodb.sapi.host}" port="${mongodb.sapi.port}" />
+	</http:request-config>
+	<circuit-breaker:config name="Circuit_breaker_Config" doc:name="Circuit-breaker Config" doc:id="dd5fea52-5d55-4865-ba0a-b63c79ce69f6" timeout="30000" breakerName="ConsentHTTPRequest" threshold="2"/>
+   
+
+</mule>

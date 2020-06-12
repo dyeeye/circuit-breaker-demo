@@ -1,0 +1,24 @@
+#%RAML 1.0
+title: Consent Process API
+version: v1
+
+baseUri: https://consents.profit-online.pl/api/{version}/
+
+mediaType: [ application/json ]
+
+types:
+  consent: !include types/consent.raml
+
+/consents:
+  get:
+    responses:
+      200:
+        body: consent[]
+
+  post:
+    body: consent
+    responses:
+      201:
+        headers:
+          Location:
+            type: string

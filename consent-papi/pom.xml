@@ -2,19 +2,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.mycompany</groupId>
+	<groupId>com.ambassadorpatryk.blog</groupId>
 	<artifactId>consent-papi</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>mule-application</packaging>
-
+    
 	<name>consent-papi</name>
 
     <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-		<app.runtime>4.2.0</app.runtime>
-		<mule.maven.plugin.version>3.2.6</mule.maven.plugin.version>
+		<app.runtime>4.3.0</app.runtime>
+		<mule.maven.plugin.version>3.3.5</mule.maven.plugin.version>
 	</properties>
 
 	<build>
@@ -25,7 +25,8 @@
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
 				<configuration>
-				</configuration>
+				<classifier>mule-application</classifier>
+                </configuration>
 			</plugin>
 		</plugins>
 	</build>
@@ -43,7 +44,10 @@
             <version>1.1.5</version>
             <classifier>mule-plugin</classifier>
         </dependency>
+        <!-- Dependency to Consent Process API on Exchange -->
+        <!-- API is available in consent-process-api folder. Publish it on your exchange. -->
 		<dependency>
+			<!-- Your organization group ID -->
             <groupId>36ede5bb-2ab0-4768-b1bb-790ae2f56042</groupId>
             <artifactId>consent-process-api</artifactId>
             <version>1.0.0</version>
